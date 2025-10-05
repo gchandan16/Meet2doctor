@@ -10,13 +10,14 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
 @router.post("/login", response_model=LoginResponse)
 def login_user(login: LoginRequest):
     try:
-        user, role, extra = authenticate_user(login.username, login.password)
+        user, role, extra ,token= authenticate_user(login.username, login.password)
 
         return LoginResponse(
             message="Login successful",
             role=role,
             user=UserBase(id=user["id"], username=user["username"], role=role),
-            details=extra
+            details=extra,
+            token=token
         )
     except HTTPException as http_exc:
         raise http_exc

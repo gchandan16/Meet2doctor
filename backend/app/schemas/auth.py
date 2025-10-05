@@ -15,6 +15,7 @@ class LoginResponse(BaseModel):
     role: str
     user: UserBase
     details: Optional[Dict[str, Any]] = None
+    token: Optional[str] = None
 
 
 # Create a user registration

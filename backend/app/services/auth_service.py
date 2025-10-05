@@ -5,6 +5,7 @@ from app.core.logging import logger
 from app.repositories.user_repository import get_user_by_username, get_doctor_details, get_patient_details, registeruser, registerdoctor,registerpatient
 from app.schemas.auth import RegisterRequest, RegisterResponse
 from app.schemas.general import ErrorResponse
+from app.core.jwt_handler import create_access_token
 
 
 def authenticate_user(username: str, password: str):
@@ -25,6 +26,8 @@ def authenticate_user(username: str, password: str):
                 logger.info(f"Password verified for user '{username}'")
 
             role = user["role"]
+            token_data={"user_id": user["id"], "username": user["username"], "role": role}
+            token = create_access_token(token_data)
             extra = None
             if role == "doctor":
                 extra = get_doctor_details(user["id"])
@@ -32,7 +35,7 @@ def authenticate_user(username: str, password: str):
                 extra = get_patient_details(user["id"])
 
             logger.info(f"User '{username}' authenticated successfully as {role}")
-            return user, role, extra
+            return user, role, extra,token
         except HTTPException as http_exc:
             raise http_exc
         except Exception as e:

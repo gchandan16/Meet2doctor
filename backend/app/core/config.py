@@ -17,5 +17,5 @@ class JWTHandler:
     ACCESS_TOKEN_EXPIRE_MINUTES = 60 # 1 hour
 
 #create the instance of JWTHandler so  use it everywhere
-jwt_handler = JWTHandler()
+jwthandler = JWTHandler()
 
