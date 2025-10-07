@@ -26,13 +26,17 @@ def authenticate_user(username: str, password: str):
                 logger.info(f"Password verified for user '{username}'")
 
             role = user["role"]
-            token_data={"user_id": user["id"], "username": user["username"], "role": role}
-            token = create_access_token(token_data)
+            pdid= None
             extra = None
             if role == "doctor":
                 extra = get_doctor_details(user["id"])
+                pdid= extra.get("doctor_id") if extra else None
             elif role == "patient":
                 extra = get_patient_details(user["id"])
+                pdid= extra.get("patient_id") if extra else None
+
+            token_data={"user_id": user["id"], "username": user["username"], "role": role,"pdid": pdid}
+            token = create_access_token(token_data)
 
             logger.info(f"User '{username}' authenticated successfully as {role}")
             return user, role, extra,token

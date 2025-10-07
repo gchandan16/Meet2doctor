@@ -1,2 +1,2 @@
-from . import doctor
+from . import doctors
 from . import auth
