@@ -1,0 +1,13 @@
+for MYSQL 
+pip install fastapi uvicorn mysql-connector-python
+
+
+for project API run
+uvicorn app.main:app --reload
+
+
+for creating VENV
+python -m venv venv
+
+for activate
+venv/Scripts/activate
