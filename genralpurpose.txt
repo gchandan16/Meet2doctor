@@ -1,3 +1,4 @@
+
 for MYSQL 
 pip install fastapi uvicorn mysql-connector-python
 
@@ -11,3 +12,7 @@ python -m venv venv
 
 for activate
 venv/Scripts/activate
+
+
+if want to freez ur requiremnents
+pip freeze > requirements.txt

@@ -1,0 +1,171 @@
+/* src/calendar-styled.css */
+
+/* container */
+.cs-root {
+  max-width: 100%;
+  margin: 18px auto 40px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* top purple bar with step bubble */
+.cs-header h3 {
+  background: #3f3f7a;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+.cs-step {
+  background: #ff6b86;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  border-radius: 50%;
+  text-align: center;
+  margin-right: 8px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* make inline datepicker full width */
+.cs-calendar .react-datepicker {
+  width: 100% !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* center month label & style */
+.cs-calendar .react-datepicker__header {
+  background: transparent !important;
+  border: none !important;
+  padding-top: 6px !important;
+  padding-bottom: 4px !important;
+}
+.cs-calendar .react-datepicker__current-month {
+  text-align: center !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-bottom: 8px !important;
+}
+
+/* navigation arrows color & position */
+.cs-calendar .react-datepicker__navigation--previous,
+.cs-calendar .react-datepicker__navigation--next {
+  top: 44px !important;
+  border: none !important;
+  background: transparent !important;
+  color: #333 !important;
+}
+.cs-calendar .react-datepicker__navigation-icon::before {
+  border-color: #333 !important;
+}
+
+/* day names style */
+.cs-calendar .react-datepicker__day-names {
+  margin-bottom: 6px !important;
+}
+.cs-calendar .react-datepicker__day-name {
+  color: #6b6b6b !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+}
+
+/* make each week have faint gray background like screenshot */
+.cs-calendar .react-datepicker__week {
+  background: #fbfbfb !important;
+}
+
+/* cells: fixed height and center aligned */
+.cs-calendar .react-datepicker__month {
+  margin: 0 !important;
+}
+.cs-calendar .react-datepicker__month td {
+  height: 46px !important;
+  vertical-align: middle !important;
+  padding: 0 !important;
+}
+.cs-calendar .react-datepicker__day {
+  padding: 10px 6px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  color: #333 !important;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* dates outside month muted */
+.cs-calendar .react-datepicker__day--outside-month {
+  color: #d8d8d8 !important;
+}
+
+/* selected day dark */
+.cs-calendar .react-datepicker__day--selected,
+.cs-calendar .react-datepicker__day--keyboard-selected {
+  background: #222 !important;
+  color: #fff !important;
+  border-radius: 3px !important;
+  padding: 8px 6px !important;
+  box-shadow: none !important;
+}
+
+/* NOT AVAILABLE (red full block) */
+.cs-not-available {
+  background: #e05558 !important;
+  color: #fff !important;
+  display: inline-block !important;
+  width: 100% !important;
+  height: 36px !important;
+  line-height: 18px !important;
+  border-radius: 3px !important;
+  box-sizing: border-box !important;
+}
+
+/* specifically ensure Sunday column looks like right column blocks */
+.cs-calendar .react-datepicker__month tr td:nth-child(7) .cs-not-available,
+.cs-calendar .react-datepicker__month tr td:nth-child(7) .react-datepicker__day {
+  display: inline-block !important;
+  width: 100% !important;
+}
+
+/* small triangle on saturated day (optional) hide default react triangle) */
+.cs-calendar .react-datepicker__day--selected::after { display: none !important; }
+
+/* Legend */
+.cs-legend {
+  list-style: none;
+  padding: 18px 0 0;
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+.cs-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+}
+.cs-legend-available {
+  display: inline-block;
+  width: 20px;
+  height: 12px;
+  background: #7bc043; /* green */
+  border-radius: 2px;
+}
+.cs-legend-not {
+  display: inline-block;
+  width: 36px;
+  height: 18px;
+  background: #e05558; /* red */
+  border-radius: 2px;
+}
+
+/* responsive tweaks */
+@media (max-width: 600px) {
+  .cs-calendar .react-datepicker__month td { height: 44px !important; }
+  .cs-header h3 { font-size: 14px; padding: 6px 10px; }
+}

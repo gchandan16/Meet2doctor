@@ -1,11 +1,27 @@
 # app/core/config.py
 
+# for local MySQL database connection
+
+
 class Settings:
     DB_HOST = "localhost"
     DB_USER = "root"
     DB_PASSWORD = ""   # set your XAMPP password if any
     DB_NAME = "meet2doctor"
     DB_PORT = 3306
+
+
+# for remote MySQL database connection
+'''
+class Settings:
+    DB_HOST = "m2docdb.cf02oqeo8e6w.ap-south-1.rds.amazonaws.com"
+    DB_USER = "admin"
+    DB_PASSWORD = "BlueBlueMoon#92"
+    DB_NAME = "meet2doctor"
+    DB_PORT = 3306
+    
+
+'''
 
 # ✅ create an instance of Settings so we can import it everywhere
 settings = Settings()

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>Meet2Doctor</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script src="/js/jquery-2.2.4.min.js"></script>
+	 <script src="/js/common_scripts.min.js"></script>
+    <script src="/js/functions.js"></script>
+
+    	<script src="/js/bootstrap-datepicker.js"></script>
+	<script>
+		$('#calendar').datepicker({
+			todayHighlight: true,
+			daysOfWeekDisabled: [0],
+			weekStart: 1,
+			format: "yyyy-mm-dd",
+			datesDisabled: ["2017/10/20", "2017/11/21", "2017/12/21", "2018/01/21", "2018/02/21", "2018/03/21"],
+		});
+	</script>
+  </body>
+</html>

@@ -130,6 +130,9 @@ def get_user_by_username(username: str, email: str=None):
     try:
         cursor.execute("SELECT * FROM users WHERE username=%s OR email=%s", (username, email))
         return cursor.fetchone()
+    except Exception as e:
+        logger.error(f"Some Issue in DB with Error fetching user by username '{username}': {e}")
+        return None
     finally:
         cursor.close()
         conn.close()
