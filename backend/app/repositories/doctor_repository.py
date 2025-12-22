@@ -56,3 +56,36 @@ class DoctorRepository(IDoctorRepository):
         finally:
             cursor.close()
             conn.close()
+    
+    def search_doctors(
+            self,
+            query: str,
+            page: int,
+            page_size: int,
+            sort_by: str
+            ) -> List[Dict[str, Any]]:
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+        try:
+            cursor.callproc("sp_search_doctors", [query,page,page_size,sort_by])
+            results = []
+            for result in cursor.stored_results():
+             results.append(result.fetchall())
+
+            return {
+                "data": results[0],                      # doctors list
+                "totalRecords": results[1][0]["totalRecords"],
+                "page": page,
+                "pageSize": page_size
+            }
+        except Exception as e:
+            logger.error(f"SP search_doctors error: {e}")
+            return {
+            "data": [],
+            "totalRecords": 0,
+            "page": page,
+            "pageSize": page_size
+        }
+        finally:
+            cursor.close()
+            conn.close()

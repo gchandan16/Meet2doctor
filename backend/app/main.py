@@ -1,6 +1,6 @@
 # app/main.py
 from fastapi import FastAPI
-from app.routers import auth, doctors,hospital_routes,patient_routes,appointment_routes,feedback_routes,doctor_hospital_routes
+from app.routers import auth, doctors,hospital_routes,patient_routes,appointment_routes,feedback_routes,doctor_hospital_routes,public_search
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Meet2Doctor API")
@@ -26,6 +26,7 @@ app.include_router(patient_routes.router)
 app.include_router(appointment_routes.router)
 app.include_router(feedback_routes.router)
 app.include_router(doctor_hospital_routes.router)
+app.include_router(public_search.router)
 
 
 @app.get("/")

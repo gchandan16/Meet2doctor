@@ -1,15 +1,19 @@
-import React from "react";
+import React,{useState} from "react";
+
 import {Link,useNavigate} from "react-router-dom";
-import {useAuth} from "../../context/AuthContext.jsx";
+import {loginSuccess, logout} from "../../redux/slices/authSlice";
+import {useSelector,useDispatch} from "react-redux";
 
 export default function Header(){
-const navigate = useNavigate();
-const {user,token,role,details,login,logout,isAuthenticated} = useAuth();
-console.log("Header Auth Context:", {user,token,role,details,isAuthenticated});
+const dispatch=useDispatch();
+const navigate=useNavigate();
+
+const {isAuthenticated} = useSelector((state) => state.auth);
+console.log("Header Auth Context:", {isAuthenticated});
 
 // for logout user
 const handleLogout=()=>{
-	logout();
+	dispatch(logout());
 	navigate("/");
 };
 

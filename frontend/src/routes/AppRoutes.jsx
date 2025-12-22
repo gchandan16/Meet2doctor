@@ -20,17 +20,18 @@ export default function AppRoutes() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/register" element={ <GuestRoute><Register /></GuestRoute>} />
-        <Route path="/login" element={  <GuestRoute><Login /></GuestRoute>} />
-         <Route path="/termsandconditions" element={<TermsAndConditions />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/register" element={ <GuestRoute><Register /></GuestRoute>} />
+          <Route path="/login" element={  <GuestRoute><Login /></GuestRoute>} />
+          <Route path="/termsandconditions" element={<TermsAndConditions />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/search" element={<Search />} />
           <Route path="/doctordetail" element={<DoctorDetail />} />
-            <Route path="/profile" element={<PrivateRoute><Profile/></PrivateRoute>} />
-        <Route path="*" element={<PageNotFound />} />
+          <Route path="/profile" element={<PrivateRoute><Profile/></PrivateRoute>} />
+          <Route path="/:type/:keyword" element={<Search />} />
+          <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>

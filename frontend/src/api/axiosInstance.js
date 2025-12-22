@@ -12,8 +12,14 @@ const axiosInstance =axios.create({baseURL,
 //request intercepter :attach token to headers
 axiosInstance.interceptors.request.use((config)=>{
   try{
-      console.log("REQUEST INTERCEPTOR -> url:", config.baseURL + config.url);
-      console.log("REQUEST INTERCEPTOR -> headers (before):", config.headers);
+    const fullUrl = `${config.baseURL}${config.url}`;
+
+    console.log("➡️ REQUEST");
+    console.log("Method:"+ config.method?.toUpperCase());
+    console.log("URL:"+ fullUrl);
+    console.log("Params:"+ config.params);   // 👈 IMPORTANT
+    console.log("Data:"+ config.data);       // 👈 for POST
+    console.log("Headers (before):"+ config.headers);
     const token =localStorage.getItem('token');
      console.log("Requested Token:", token);
     if(token){

@@ -18,3 +18,8 @@ class IDoctorRepository(ABC):
     def list_all_doctors(self) -> List[Dict[str, Any]]:
         """Get all doctor profiles"""
         pass
+
+    @abstractmethod
+    def search_doctors(self, query: str) -> List[Dict[str, Any]]:
+        """Search doctors by name or specialization"""
+        pass

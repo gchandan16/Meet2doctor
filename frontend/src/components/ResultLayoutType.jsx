@@ -1,19 +1,13 @@
-export default function ResultLayoutType() {  
+export default function ResultLayoutType({sortBy,onSortChange}) {  
+	const handleonSortChange=(e)=>{
+
+		onSortChange(e.target.value);
+	}
   return (
     <div className="filters_listing">
 			<div className="container">
 				<ul className="clearfix">
-					<li>
-						<h6>Type</h6>
-						<div className="switch-field">
-							<input type="radio" id="all" name="type_patient" value="all" checked />
-							<label htmlFor="all">All</label>
-							<input type="radio" id="doctors" name="type_patient" value="doctors" />
-							<label htmlFor="doctors">Doctors</label>
-							<input type="radio" id="clinics" name="type_patient" value="clinics" />
-							<label htmlFor="clinics">Clinics</label>
-						</div>
-					</li>
+
 					<li>
 						<h6>Layout</h6>
 						<div className="layout_view">
@@ -24,12 +18,13 @@ export default function ResultLayoutType() {
 					</li>
 					<li>
 						<h6>Sort by</h6>
-						<select name="orderby" className="selectbox">
-						<option value="Closest">All Doctors</option>
-						<option value="Best rated">Best rated</option>
-						<option value="Men">Men</option>
-						<option value="Women">Women</option>
-						</select>
+						<select value={sortBy} onChange={handleonSortChange}>
+								<option value="name_asc">Name (A–Z)</option>
+								<option value="name_desc">Name (Z–A)</option>
+								<option value="exp_desc">Experience (High → Low)</option>
+								<option value="exp_asc">Experience (Low → High)</option>
+								<option value="spec_asc">Specialization (A–Z)</option>
+           </select>
 					</li>
 				</ul>
 			</div>

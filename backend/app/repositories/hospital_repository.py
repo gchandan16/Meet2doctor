@@ -1,5 +1,6 @@
 from app.core.database import get_connection
 from app.core.logging import logger
+from typing import Any, Dict, List
 
 class HospitalRepository:
 
@@ -87,6 +88,27 @@ class HospitalRepository:
             conn.rollback()
             logger.error(f"Error in delete_hospital: {e}")
             return {"success": False, "message": str(e)}
+        finally:
+            cursor.close()
+            conn.close()
+
+    @staticmethod
+    def search_hospitals(self, keyword: str) -> List[Dict[str, Any]]:
+        """
+        CALL sp_search_hospitals(IN p_keyword VARCHAR(100))
+        SP should search in hospital/clinic name, city, area.
+        """
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+        try:
+            args = [keyword]
+            cursor.callproc("sp_search_hospitals", args)
+            for result in cursor.stored_results():
+                rows = result.fetchall()
+                return rows
+        except Exception as e:
+            logger.error(f"SP search_hospitals error: {e}")
+            return []
         finally:
             cursor.close()
             conn.close()

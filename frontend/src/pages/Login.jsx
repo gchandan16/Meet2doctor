@@ -1,43 +1,42 @@
 // frontend/src/pages/Login.jsx
-import React, { useState } from "react";
+import React,{useState} from "react";
+import {useDispatch} from "react-redux";
+import {loginUser} from "../api/authService";
+import {loginSuccess} from "../redux/slices/authSlice";
 import {useNavigate} from "react-router-dom";
-import {loginUser} from "../api/authService.js";
-import useAuth from "../hooks/useAuth.js";
+
+
 
 export default function Login() {
-	const {login}=useAuth();
+  const dispatch=useDispatch();
 	const navigate=useNavigate();
 	const [form,setForm]=useState({username:"",password:""});
 	const [error,setError]=useState("");
 	const [loading,setLoading]=useState(false);
-
-	const onChange=(e)=>{
-
-		setForm({...form,[e.target.name]:e.target.value});
-	};
-
-	const onSubmit=async(e)=>{
+  const onSubmit=async(e)=>{
 		e.preventDefault();
 		setError("");
 		setLoading(true);
 		try{
- 
-			console.log("submit request:", form);
-			const resp=await loginUser(form);
-			console.log("Login response:", resp);
-			//resp is object you pasted in context login.it contains token,user,role,details
-			login({token:resp.token,user:resp.user,role:resp.role,details:resp.details});
-			if(resp.role==="admin") navigate("/");
-			else	
-			navigate("/");
+			console.log("Submitting login form with data:", form);
+        const resp=await loginUser(form);
+				dispatch(
+					loginSuccess({
+						user:resp.user,
+						token:resp.token,
+						role:resp.role,
+					})
+				);
+				navigate("/");
 		}
-		catch(error){
-			setError("Login failed. Please check your credentials.");
+		catch(err){
+			console.error("Login failed:", err);
 		}
-		finally{
-			setLoading(false);
-		}
+		
 	}
+	const onChange=(e)=>{
+	setForm({...form,[e.target.name]:e.target.value});
+}
 
 
 

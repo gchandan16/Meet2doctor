@@ -1,13 +1,12 @@
 import { Link,useNavigate } from "react-router-dom";
-import {useAuth} from "../context/AuthContext.jsx";
+import {useSelector,useDispatch} from "react-redux";
 export default function Profile() {
- const {user,token,role,details,logout}=useAuth();
+ const {user,token,role,details,logout,isAuthenticated} = useSelector((state) => state.auth);
 
   return (
     <>
     <div className="container">
     <div className="main-body">
-
           <div className="row gutters-sm">
             <div className="col-md-4 mb-3">
               <div className="card">

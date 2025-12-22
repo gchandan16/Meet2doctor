@@ -1,7 +1,7 @@
 import { Link,useNavigate } from "react-router-dom";
-import {useAuth} from "../../context/AuthContext.jsx";
+import {useSelector,useDispatch} from "react-redux";
 export default function Footer() {   
-	const {isAuthenticated}=useAuth();
+	const {isAuthenticated}=useSelector((state)=>state.auth);
   return (
 <footer style={{ backgroundColor: "#3f4079" }}>
 		<div className="container margin_60_35" >
